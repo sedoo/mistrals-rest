@@ -1,0 +1,124 @@
+mistrals:
+    data: /data/archive/dataterra/mistrals
+
+eureka:
+  client:
+    enabled: false
+    
+server.error.include-message: always    
+
+springdoc.swagger-ui.oauth.clientId: aeris-public
+springdoc.oAuthFlow.authorizationUrl: https://sso.aeris-data.fr/auth/realms/aeris/protocol/openid-connect/auth
+springdoc.oAuthFlow.tokenUrl: https://sso.aeris-data.fr/auth/realms/aeris/protocol/openid-connect/token 
+
+temporary:
+   cronExpression: 0 30 20 * * *
+   storageDuration: 2
+
+server:
+    port: 8081
+    error.whitelabel.enabled: false
+ 
+ 
+metadataService:    
+    url: https://services.aeris-data.fr/mistralsprod/metadata/
+
+
+---
+spring.profiles: dev
+
+springdoc.server.url:  http://localhost:${server.port}/
+springdoc.swagger-ui.configUrl: /v3/api-docs/swagger-config
+springdoc.swagger-ui.oauth2RedirectUrl: ${springdoc.server.url}/swagger-ui/oauth2-redirect.html
+springdoc.swagger-ui.url: /v3/api-docs/
+
+
+---
+spring.profiles: am
+
+mistrals:
+    data: /home/amiere/Documents/data/
+local:
+    baseFolder: /home/amiere/Documents/tmp
+
+
+---
+spring.profiles: prod
+
+springdoc.swagger-ui.configUrl: /${spring.application.name}/v3/api-docs/swagger-config
+springdoc.swagger-ui.oauth2RedirectUrl: https://api.sedoo.fr/${spring.application.name}/swagger-ui/oauth2-redirect.html
+springdoc.swagger-ui.url: /${spring.application.name}/v3/api-docs/
+springdoc.server.url:  https://api.sedoo.fr/${spring.application.name}
+
+mail.hostname: fake
+mail.from: fake
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone:  http://toodur:8761/eureka
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 5
+    
+server.port: 0
+
+
+local:
+    baseFolder: /data2/mistrals-prod/tmp
+
+
+    
+
+---
+
+spring:
+   profiles: monitoring
+   boot:
+       admin:
+           client:
+               url: https://monitoring.sedoo.fr
+               auto-deregistration: true
+
+info:
+  api: https://api.sedoo.fr/${spring.application.name}/swagger-ui/index.html
+  code:
+    front: none
+    back: https://github.com/sedoo/mistrals-rest
+  folders: none
+  database:
+    type: none
+    location: none
+  archive: ${mistrals.data}
+
+endpoints:
+    enabled: true
+    health:
+        enabled: true
+        time-to-live: 86400000
+        cache.time-to-live: 86400000
+    info:
+        enabled: true  
+        
+        
+management.info.env.enabled: true
+  
+management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+        info:
+            enabled: true
+        health:
+            time-to-live: 86400000
+            cache.time-to-live: 86400000
+            show-details: "ALWAYS"
+            northstar:
+                cacheup: 240
+                cachedown: 120 
+
+
