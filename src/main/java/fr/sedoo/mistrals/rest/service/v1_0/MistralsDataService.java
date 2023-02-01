@@ -76,7 +76,7 @@ public class MistralsDataService {
 			@Parameter(description = "id of the collection to be scripted") @RequestParam("collectionId") String collectionId,
 			@Parameter(description = "filter that indicates the selected items") @RequestParam(required = false) String filter) {
 		//String baseUrl = "https://" + request.getServerName() + request.getContextPath();
-		String baseUrl = "https://api.sedoo.fr/sedoo-baobab-rest";
+		String baseUrl = "https://api.sedoo.fr/sedoo-mistrals-rest";
 		LOG.debug("baseurl: " + baseUrl);
 		String command = "";
 		if (!Strings.isNullOrEmpty(filter)) {

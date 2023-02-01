@@ -1,5 +1,5 @@
 mistrals:
-    data: /data/archive/dataterra/mistrals
+    data: /data/archive/dataterra
 
 eureka:
   client:
@@ -24,6 +24,16 @@ metadataService:
     url: https://services.aeris-data.fr/mistralsprod/metadata/
 
 
+sso:
+    login: arnaud.miere@obs-mip.fr
+    password: Miere22@r
+
+mail:
+    hostname: localhost
+    subjectPrefix: '[OPSE]'
+    from: northstar@sedoo.fr
+
+
 ---
 spring.profiles: dev
 
@@ -41,6 +51,14 @@ mistrals:
 local:
     baseFolder: /home/amiere/Documents/tmp
 
+sso:
+    login: arnaud.miere@obs-mip.fr
+    password: Miere22@r
+
+mail:
+    hostname: localhost
+    subjectPrefix: '[OPSE]'
+    from: arnaud.miere@gmail.com
 
 ---
 spring.profiles: prod
@@ -67,9 +85,11 @@ server.port: 0
 
 
 local:
-    baseFolder: /data2/mistrals-prod/tmp
+    baseFolder: /data/services/sedoo-mistrals-rest/tmp
 
-
+sso:
+    login: arnaud.miere@obs-mip.fr
+    password: Miere22@r
     
 
 ---

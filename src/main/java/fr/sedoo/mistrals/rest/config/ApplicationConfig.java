@@ -7,15 +7,31 @@ import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.Setter;
-
+@Getter
+@Setter
 @Component
 public class ApplicationConfig {
 	
 	@Value("${mistrals.data}")
 	private String mistralsFolderName;
 
-	@Value("${application.folder}/tmp")
+	@Value("${local.baseFolder}")
 	private String temporaryDownloadFolderName;
+	
+	@Value("${sso.login}")
+	private String login;
+	
+	@Value("${sso.password}")
+	private String password;
+	
+	@Value("${mail.hostname}")
+	private String hostname;
+	
+	@Value("${mail.subjectPrefix}")
+	private String subjectPrefix;
+	
+	@Value("${mail.from}")
+	private String from;
 	
 
 	
