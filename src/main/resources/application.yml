@@ -1,5 +1,5 @@
 mistrals:
-    data: /data/archive/dataterra
+    data: /data/archive/nfsshare/dataterra
 
 eureka:
   client:
@@ -94,13 +94,6 @@ sso:
 
 ---
 
-spring:
-   profiles: monitoring
-   boot:
-       admin:
-           client:
-               url: https://monitoring.sedoo.fr
-               auto-deregistration: true
 
 info:
   api: https://api.sedoo.fr/${spring.application.name}/swagger-ui/index.html
